@@ -1,0 +1,10 @@
+{
+  "description": "No login. Is the env up and sane? Health, headers, login page, anonymous API rules, page-load budget.",
+  "mode": "public",
+  "suites": ["smoke", "hardening", "api", "engine", "e2e", "resilience", "perf"],
+  "ai": false,
+  "writes": false,
+  "security": false,
+  "slow": false,
+  "visual": false
+}

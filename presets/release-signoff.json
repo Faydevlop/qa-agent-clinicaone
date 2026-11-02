@@ -1,0 +1,12 @@
+{
+  "description": "UAT / pre-release sign-off: full regression plus the AI patient (paid, capped at 15 calls).",
+  "mode": "login",
+  "suites": ["smoke", "hardening", "api", "engine", "e2e", "resilience", "perf", "mobile"],
+  "ai": true,
+  "aiMaxCalls": 15,
+  "writes": true,
+  "security": false,
+  "slow": false,
+  "visual": true,
+  "retries": 1
+}

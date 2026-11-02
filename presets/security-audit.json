@@ -1,0 +1,10 @@
+{
+  "description": "dev/test only. Ownership (IDOR) and exposure probes plus hardening. Needs LEARNER2_* for IDOR.",
+  "mode": "login",
+  "suites": ["hardening", "api"],
+  "ai": false,
+  "writes": true,
+  "security": true,
+  "slow": false,
+  "visual": false
+}

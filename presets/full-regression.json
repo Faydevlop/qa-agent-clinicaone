@@ -1,0 +1,11 @@
+{
+  "description": "Everything except paid AI, security probes and slow idle test. ~30-40 min.",
+  "mode": "login",
+  "suites": ["smoke", "hardening", "api", "engine", "e2e", "resilience", "perf", "mobile"],
+  "ai": false,
+  "writes": true,
+  "security": false,
+  "slow": false,
+  "visual": false,
+  "retries": 1
+}

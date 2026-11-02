@@ -1,0 +1,11 @@
+{
+  "description": "Right after a deploy: smoke + API contract + engine rules. No AI spend. ~10 min.",
+  "mode": "login",
+  "suites": ["smoke", "hardening", "api", "engine"],
+  "ai": false,
+  "writes": true,
+  "security": false,
+  "slow": false,
+  "visual": false,
+  "retries": 0
+}
