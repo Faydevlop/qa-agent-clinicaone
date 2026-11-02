@@ -1,0 +1,70 @@
+{
+  "title": "<Exact case title from Case Library>",
+  "envs": [
+    "dev",
+    "test",
+    "uat"
+  ],
+  "verified": false,
+  "notes": "Golden path, timers and scores copied from Case Builder on <date>.",
+  "scenarios": [
+    {
+      "name": "golden path",
+      "golden": true,
+      "steps": [
+        {
+          "action": "<first golden action>",
+          "expect": {
+            "classification": "graph_advance"
+          }
+        },
+        {
+          "handoff": null
+        }
+      ],
+      "expect": {
+        "passed": true,
+        "outcomeIn": [
+          "success",
+          "partial",
+          "slow"
+        ],
+        "reason": "handoff"
+      }
+    },
+    {
+      "name": "curated wrong action is penalised",
+      "steps": [
+        {
+          "action": "<a wrong action>",
+          "expect": {
+            "classification": "wrong_state",
+            "scoreDelta": -20
+          }
+        }
+      ]
+    },
+    {
+      "name": "deteriorates when untreated",
+      "steps": [
+        {
+          "skipTime": 10,
+          "expect": {
+            "enteredBy": "deterioration"
+          }
+        }
+      ]
+    }
+  ],
+  "manualChecks": [
+    "<something only eyes can judge, e.g. 'O2 mask overlay appears after High-Flow O2'>"
+  ],
+  "knownIssues": [
+    {
+      "summary": "<what is wrong>",
+      "env": "test",
+      "since": "<date>",
+      "bug": "<link or id>"
+    }
+  ]
+}

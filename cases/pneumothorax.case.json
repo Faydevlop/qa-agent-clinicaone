@@ -1,0 +1,78 @@
+{
+  "title": "Pneumothorax",
+  "verified": false,
+  "notes": "Draft from the backend repo's local e2e spec (tests/e2e/cases/pneumothorax.case.json) and cases/ Pneumothorax.json. Timers: Arrival→Assessment 600s (+15), Assessment→Deterioration 120s (−10), Deterioration→PEA 90s (−20), PEA→Death 120s (−20). Golden path: High-Flow O2 (+15) → Needle Decompression (+15) → Definitive Tube Thoracostomy (+20) → Recovery. Confirm names, scores and the deployed case title against Case Builder on each env, then set verified=true.",
+  "scenarios": [
+    {
+      "name": "golden path reaches recovery and passes",
+      "golden": true,
+      "steps": [
+        {
+          "action": "High-Flow O2",
+          "expect": {
+            "classification": "graph_advance"
+          }
+        },
+        {
+          "action": "Needle Decompression",
+          "expect": {
+            "classification": "graph_advance"
+          }
+        },
+        {
+          "action": "Definitive Tube Thoracostomy",
+          "expect": {
+            "classification": "graph_advance",
+            "isTerminal": true
+          }
+        },
+        {
+          "handoff": null
+        }
+      ],
+      "expect": {
+        "passed": true,
+        "scoreMin": 1,
+        "outcomeIn": [
+          "success",
+          "partial",
+          "slow"
+        ],
+        "reason": "handoff"
+      }
+    },
+    {
+      "name": "untreated patient deteriorates over time",
+      "steps": [
+        {
+          "skipTime": 10,
+          "expect": {
+            "enteredBy": "deterioration"
+          }
+        }
+      ]
+    },
+    {
+      "name": "repeating a completed step does not score twice",
+      "steps": [
+        {
+          "action": "High-Flow O2",
+          "expect": {
+            "classification": "graph_advance"
+          }
+        },
+        {
+          "action": "High-Flow O2"
+        },
+        {
+          "handoff": null
+        }
+      ],
+      "expect": {
+        "scoreMax": 15
+      }
+    }
+  ],
+  "manualChecks": [],
+  "knownIssues": []
+}
